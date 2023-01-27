@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:25:46 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/27 15:45:57 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/27 17:31:37 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 ** Returns a pointer to the allocated and initialized memory, or `NULL` if
 ** the memory could not be allocated.
 */
+#include <stdint.h>
 
 void *ft_calloc(size_t count, size_t size)
 {
