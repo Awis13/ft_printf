@@ -14,7 +14,7 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c \
        ft_strjoin.c ft_strtrim.c ft_split.c \
        ft_itoa.c ft_strmapi.c ft_striteri.c \
        ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-       ft_putnbr_fd.c
+       ft_putnbr_fd.c ft_printf.c
 
 # List of bonus source files
 BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
@@ -37,7 +37,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@printf "\e[32mBuilding library...\n\e[0m"
 	@ar rcs $(NAME) $(OBJS)
-	@printf "\e[32mDone! libft.a is ready.\n\e[0m"
+	@printf "\e[32mDone! Libft with printf is ready.\n\e[0m"
 
 # Create build directory if it does not exist
 $(OBJS): | build
