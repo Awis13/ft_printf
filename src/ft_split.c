@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 13:16:55 by Nipostni          #+#    #+#             */
-/*   Updated: 2023/01/27 17:32:48 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:39:50 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,20 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-// int main (void)
+
+// int				main(void)
 // {
-// 	char *src = "test,testtest,test";
-// 	char d = ',';
-// 	printf(("%s"), ft_split(src, d));
+// 	char	**tab;
+// 	unsigned int	i;
+
+// 	i = 0;
+// 	tab = ft_split("tests%dtring", '%');
+// 	if (!tab[0])
+// 		ft_putendl_fd("ok\n", 1);
+// 	while (tab[i] != NULL)
+// 	{
+// 		ft_putendl_fd(tab[i], 1);
+// 		i++;
+// 	}
 // }
+

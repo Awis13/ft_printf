@@ -6,31 +6,61 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/27 18:49:41 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:17:13 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include "../include/libft.h"
+
+char *ft_check_the_flag(va_list args, const char *format, int offset)
+{
+    if(offset == 'd')
+    {
+        ft_putnbr_fd((va_arg(args, int)), 1);
+    }
+    
+   
+    
+}
 
 int ft_printf(const char *format, ...)
 {
-    char x;
+    char *temp;
+    int len;
     va_list args;
+    int i = 0;
+    len = ft_strlen(format);
     va_start(args, format);
-    while (args)
+
+    while (format[i])
     {
-        x = va_arg(args, char);
-        printf("%c", x);
+        char c = format[i];
+        if(c == '%')
+        {
+            ft_check_the_flag(args, format, format[i + 1]);
+            i = i + 2;
+        }
+        else 
+        {
+        ft_putchar_fd(c, 1); 
+        i++;
+        }
     }
     
+    
+    
+
     va_end(args);
     return(0);
 }
 
 int main(void)
 {
-    char c = 'a';
-    ft_printf(c);
+    char *x = "111%d222%d333333\n";
+    int y = 5;
+    int z = 9;
+    ft_printf(x, y, z);
 }
