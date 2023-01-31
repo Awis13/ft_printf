@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/30 19:23:09 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:15:38 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char *ft_check_the_flag(va_list args, int flag)
     }
     if(flag == 'c')
     {
-        ft_putchar_fd((va_arg(args, int)), 1);
+        char c = ((va_arg(args, int)), 1);
+        ft_putchar_fd(c, 1);
     }
     if(flag == 'i')
     {
@@ -31,9 +32,7 @@ char *ft_check_the_flag(va_list args, int flag)
     }
     if(flag == 'u')
     {
-        int integer = va_arg(args, int);
-        if (integer < 0)
-            integer *= -1;
+        unsigned int integer = va_arg(args, unsigned int);
         ft_putnbr_fd(integer, 1);
 
     }
@@ -73,10 +72,16 @@ int ft_printf(const char *format, ...)
     return(0);
 }
 
-int main(void)
-{
-    char *x = "111%d222%d333%c444%c555%i666%u777%%888\n";
-    int y = 5;
-    int z = 9;
-    ft_printf(x, y, z, 'z', 'q', 8, -4);
-}
+// int main(void)
+// {
+//     char *x = "%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c";
+    
+//     // char *x = "%utest\n";
+//     // int y = 5;
+//     // int z = 9;
+//     // ft_printf(x, y, z, 'z', 'q', 8, -4);
+//     // printf(x, y, z, 'z', 'q', 8, -4);
+//     // printf(x, y);
+//     ft_printf(x, 1);
+//     printf(x, 1);
+// }
