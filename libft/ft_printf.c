@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
+/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/31 21:05:00 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:53:19 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <fcntl.h>
 #include <stdbool.h>
 
-char *ft_check_the_flag(va_list args, int flag, bool *done)
+char *ft_check_the_flag(va_list args, int flag, bool *done, const char *format, int position)
 {
 
 	
@@ -45,10 +45,15 @@ char *ft_check_the_flag(va_list args, int flag, bool *done)
         ft_putnbr_fd(integer, 1);
 
     }
+    
     if(flag == '%')
+    {
         ft_putchar_fd('%', 1);
+    }
+                
 	if(ft_isdigit(flag) == 1)
 	{
+       
 		int i = 0;
 		int integer = va_arg(args, int);
 		int len = ft_strlen(ft_itoa(integer));
@@ -63,6 +68,7 @@ char *ft_check_the_flag(va_list args, int flag, bool *done)
 		*done = true;
 	
 	}
+  
     return(0);
 }
 
@@ -81,7 +87,7 @@ int ft_printf(const char *format, ...)
         char c = format[i];
         if(c == '%')
         {
-            ft_check_the_flag(args, format[i + 1], &done);
+            ft_check_the_flag(args, format[i + 1], &done, format, i);
             i += 2;
         }
         else
@@ -90,16 +96,18 @@ int ft_printf(const char *format, ...)
         i++;
         }
     }
-   
+    
+
 
     va_end(args);
     return(0);
 }
 
-// int main(void)
-// {
-//     char *x = "%7d\n";
-// 	int y = 33;
-//     ft_printf(x, y);
-//     printf(x, y);
-// }
+int main(void)
+{
+    char *x = "%7d";
+	int y = 33;
+    ft_printf(x, y);
+    printf("\n");
+    printf(x, y);
+}
