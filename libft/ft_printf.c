@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/02/02 18:03:25 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:26:04 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,119 +14,90 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include "../include/libft.h"
+#include "../include/ft_printf.h"
 #include <fcntl.h>
 #include <stdbool.h>
 
-char *ft_check_the_flag(va_list args, int flag, bool *done, const char *format, int position)
+void ft_putchar(char c, int *printed_len)
 {
-
-    bool padding = false;
-	
-	if(flag == 's')
-	{
-		char *str = va_arg(args, char *);
-		ft_putstr_fd(str, 1);
-	}
-    if(flag == 'd')
-    {
-        ft_putnbr_fd((va_arg(args, int)), 1);
-    }
-    if(flag == 'c')
-    {
-        char c = ((va_arg(args, int)), 1);
-        ft_putchar_fd(c, 1);
-    }
-    if(flag == 'i')
-    {
-        ft_putnbr_fd((va_arg(args, int)), 1);
-    }
-    if(flag == 'u')
-    {
-        unsigned int integer = va_arg(args, unsigned int);
-        ft_putnbr_fd(integer, 1);
-
-    }
-    
-    if(flag == '%')
-    {
-        ft_putchar_fd('%', 1);
-    }
-    if (flag == '-')
-        {
-            padding = true;
-            flag = format[position + 2];
-            // printf("%c", flag);
-        }     
-	if(ft_isdigit(flag) == 1)
-	{
-       
-		int i = 0;
-		int integer = va_arg(args, int);
-		int len = ft_strlen(ft_itoa(integer));
-		int width = flag - '0';
-        if(!padding)
-        {
-            
-            while(i < width - len)
-		    {
-			    ft_putchar_fd(' ', 1);
-			    i++;
-		    }
-            ft_putnbr_fd(integer, 1);
-           
-	
-        }
-         else
-            {
-               ft_putnbr_fd(integer, 1);
-                while(i < width - len)
-                {
-                    ft_putchar_fd(' ', 1);
-                    i++;
-                }
-            }
-		*done = true;
-	
-	}
-  
-    return(0);
+	write(1, &c, 1);
+	*printed_len += 1;
 }
+
+void ft_putstr(char *str, int *printed_len)
+{
+	while (*str)
+	{
+		ft_putchar(*str, printed_len);
+		str++;
+	}
+}
+
+void ft_putnbr(int n, int *printed_len)
+{
+	if (n == -2147483648)
+	{
+		ft_putstr("-2147483648", printed_len);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar('-', printed_len);
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr(n / 10, printed_len);
+		ft_putnbr(n % 10, printed_len);
+	}
+	else
+		ft_putchar(n + '0', printed_len);
+}
+
 
 int ft_printf(const char *format, ...)
 {
-    // char *temp;
-    // int len;
-    va_list args;
-    int i = 0;
-    // len = ft_strlen(format);
-    va_start(args, format);
-	bool done = false;
+	char *str;
+	int printed_len;
+	va_list args;
+	str = (char *)format;
+	printed_len = 0;
+	va_start(args, format);
+	while (*str)
+	{
+		if (*str == '%')
+		{
+			str++;
+			if (*str == 'd')
+			{
+				ft_putnbr(va_arg(args, int), &printed_len);
+				str++;
+			}
+			else if (*str == 's')
+			{
+				ft_putstr(va_arg(args, char *), &printed_len);
+				str++;
+			}
+			else if (*str == 'c')
+			{
+				ft_putchar(va_arg(args, int), &printed_len);
+				str++;
+			}
+		}
+		else
+		{
+			ft_putchar(*str, &printed_len);
+			str++;
+		}
+	}
 
-    while (format[i] && done == false)
-    {
-        char c = format[i];
-        if(c == '%')
-        {
-            ft_check_the_flag(args, format[i + 1], &done, format, i);
-            i += 2;
-        }
-        else
-        {
-        ft_putchar_fd(c, 1); 
-        i++;
-        }
-    }
-    
-
-
-    va_end(args);
-    return(0);
+	return (printed_len);
 }
 
 // int main(void)
 // {
-//     char *x = "%7d";
-// 	int y = 33;
+//     char *x = "this %d number";
+// 	int y = 17;
 //     ft_printf(x, y);
 //     printf("\n");
 //     printf(x, y);
