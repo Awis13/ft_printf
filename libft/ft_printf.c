@@ -6,7 +6,7 @@
 /*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/02/03 19:26:04 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:31:02 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,36 @@ int ft_printf(const char *format, ...)
 			else if (*str == 'c')
 			{
 				ft_putchar(va_arg(args, int), &printed_len);
+				str++;
+			}
+			else if (*str == 'i')
+			{
+				ft_putnbr(va_arg(args, int), &printed_len);
+				str++;
+			}
+			else if (*str == 'u')
+			{
+				ft_putnbr(va_arg(args, unsigned int), &printed_len);
+				str++;
+			}
+			else if (*str == 'x')
+			{
+				ft_putnbr(va_arg(args, unsigned int), &printed_len);
+				str++;
+			}
+			else if (*str == 'X')
+			{
+				ft_putnbr(va_arg(args, unsigned int), &printed_len);
+				str++;
+			}
+			else if (*str == 'p')
+			{
+				ft_putnbr(va_arg(args, unsigned long), &printed_len);
+				str++;
+			}
+			else if (*str == '%')
+			{
+				ft_putchar('%', &printed_len);
 				str++;
 			}
 		}
