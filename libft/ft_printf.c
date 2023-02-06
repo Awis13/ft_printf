@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
+/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/02/03 19:31:02 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/06 18:32:19 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,12 @@ int ft_printf(const char *format, ...)
 			}
 			else if (*str == 's')
 			{
-				ft_putstr(va_arg(args, char *), &printed_len);
+				char *temp = va_arg(args, char *);
+				if (temp == NULL)
+					ft_putstr("(null)", &printed_len);
+				else {
+					ft_putstr(temp, &printed_len);
+				}
 				str++;
 			}
 			else if (*str == 'c')
@@ -126,8 +131,8 @@ int ft_printf(const char *format, ...)
 
 // int main(void)
 // {
-//     char *x = "this %d number";
-// 	int y = 17;
+//     char *x = "NULL %s NULL";
+// 	char *y = NULL;
 //     ft_printf(x, y);
 //     printf("\n");
 //     printf(x, y);
