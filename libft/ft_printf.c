@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/02/06 18:32:19 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:19:57 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,45 @@
 #include "../include/ft_printf.h"
 #include <fcntl.h>
 #include <stdbool.h>
+#include <limits.h>
 
 void ft_putchar(char c, int *printed_len)
 {
 	write(1, &c, 1);
 	*printed_len += 1;
+}
+
+void ft_put_capital_hex(unsigned long n, int *printed_len)
+{
+	if (n >= 16)
+	{
+		ft_put_capital_hex(n / 16, printed_len);
+		ft_put_capital_hex(n % 16, printed_len);
+	}
+	else
+	{
+		if (n < 10)
+			ft_putchar(n + '0', printed_len);
+		else
+			ft_putchar(n + 'A' - 10, printed_len);
+	}
+}
+
+
+void ft_put_hex(unsigned long n, int *printed_len)
+{
+	if (n >= 16)
+	{
+		ft_put_hex(n / 16, printed_len);
+		ft_put_hex(n % 16, printed_len);
+	}
+	else
+	{
+		if (n < 10)
+			ft_putchar(n + '0', printed_len);
+		else
+			ft_putchar(n + 'a' - 10, printed_len);
+	}
 }
 
 void ft_putstr(char *str, int *printed_len)
@@ -33,7 +67,7 @@ void ft_putstr(char *str, int *printed_len)
 	}
 }
 
-void ft_putnbr(int n, int *printed_len)
+void ft_putnbr(long n, int *printed_len)
 {
 	if (n == -2147483648)
 	{
@@ -100,17 +134,19 @@ int ft_printf(const char *format, ...)
 			}
 			else if (*str == 'x')
 			{
-				ft_putnbr(va_arg(args, unsigned int), &printed_len);
+				ft_put_hex(va_arg(args, unsigned int), &printed_len);
 				str++;
 			}
 			else if (*str == 'X')
 			{
-				ft_putnbr(va_arg(args, unsigned int), &printed_len);
+				ft_put_capital_hex(va_arg(args, unsigned int), &printed_len);
 				str++;
+				
 			}
 			else if (*str == 'p')
 			{
-				ft_putnbr(va_arg(args, unsigned long), &printed_len);
+				ft_putstr("0x", &printed_len);
+				ft_put_hex(va_arg(args, unsigned long), &printed_len);
 				str++;
 			}
 			else if (*str == '%')
@@ -131,8 +167,8 @@ int ft_printf(const char *format, ...)
 
 // int main(void)
 // {
-//     char *x = "NULL %s NULL";
-// 	char *y = NULL;
+//     char *x = " %X ";
+// 	long y = -1;
 //     ft_printf(x, y);
 //     printf("\n");
 //     printf(x, y);
