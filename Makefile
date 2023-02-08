@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/08 17:07:54 by nipostni          #+#    #+#              #
+#    Updated: 2023/02/08 17:20:26 by nipostni         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I include
@@ -14,7 +26,8 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c \
        ft_strjoin.c ft_strtrim.c ft_split.c \
        ft_itoa.c ft_strmapi.c ft_striteri.c \
        ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-       ft_putnbr_fd.c ft_printf.c ft_printf_utils.c\
+       ft_putnbr_fd.c\
+	   ft_printf.c ft_printf_utils.c \
 
 
 # List of bonus source files
