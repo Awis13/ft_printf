@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+         #
+#    By: nipostni <awis@me.com>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 17:07:54 by nipostni          #+#    #+#              #
-#    Updated: 2023/02/08 17:20:26 by nipostni         ###   ########.fr        #
+#    Updated: 2023/02/08 23:11:12 by nipostni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,16 +27,19 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c \
        ft_itoa.c ft_strmapi.c ft_striteri.c \
        ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
        ft_putnbr_fd.c\
-	   ft_printf.c ft_printf_utils.c \
-
 
 # List of bonus source files
 BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
         ft_lstlast.c ft_lstadd_back.c ft_lstclear.c \
         ft_lstdelone.c ft_lstiter.c ft_lstmap.c
 
+# List of printf source files
+
+SRCS_PRINTF = ft_printf.c ft_printf_utils.c \
+
 # Object files
 OBJS = $(SRCS:%.c=build/%.o)
+OBJS_PRINTF = $(SRCS_PRINTF:%.c=build/%.o)
 BONUS_OBJS = $(BONUS:%.c=build/%.o)
 
 # Library name
@@ -48,13 +51,16 @@ NAME = libftprintf.a
 all: $(NAME)
 
 # Build library
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(OBJS_PRINTF)
 	@printf "\e[32mBuilding library...\n\e[0m"
-	@ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS) $(OBJS_PRINTF)
 	@printf "\e[32mDone! Libft is ready.\n\e[0m"
 
 # Create build directory if it does not exist
 $(OBJS): | build
+$(OBJS_PRINTF): | build
+
+
 build:
 	@mkdir -p build
 
@@ -62,10 +68,14 @@ build:
 build/%.o: libft/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@printf "\e[36mCompiled %s successfully!\n\e[0m" $<
+	
+build/%.o: src/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "\e[36mCompiled %s successfully!\n\e[0m" $<
 
 # Clean object files
 clean:
-	@rm -f $(OBJS) $(BONUS_OBJS)
+	@rm -f $(OBJS) $(BONUS_OBJS) $(OBJS_PRINTF)
 	@printf "\e[31mObject files removed!\n\e[0m"
 
 # Clean object files and library
@@ -77,7 +87,7 @@ fclean: clean
 re: fclean $(NAME)
 
 # Build library with bonus files
-bonus: $(OBJS) $(BONUS_OBJS)
+bonus: $(OBJS) $(BONUS_OBJS) $(OBJS_PRINTF)
 	@printf "\e[32mBuilding library with bonus files...\n\e[0m"
 	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 	@printf "\e[32mDone! libft.a BONUS is ready.\n\e[0m"
