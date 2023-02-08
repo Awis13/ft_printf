@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-		"stdbool.h": "c",
-		"sstream": "c",
-		"ft_printf.h": "c",
-		"libft.h": "c"
-	},
-	"C_Cpp.errorSquiggles": "disabled"
-}
