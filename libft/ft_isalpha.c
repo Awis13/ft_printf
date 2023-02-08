@@ -5,17 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 15:30:15 by nipostni          #+#    #+#             */
-/*   Updated: 2022/12/20 15:34:31 by nipostni         ###   ########.fr       */
+/*   Created: 2021/11/15 13:50:13 by Nipostni          #+#    #+#             */
+/*   Updated: 2022/02/14 20:09:37 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-** Check if the given character `c` is an alphabetic character (i.e., a letter of the alphabet).
-** Return 1 if `c` is an alphabetic character, and 0 if it is not.
-*/
 
 int	ft_isalpha(int c)
 {
@@ -24,4 +19,3 @@ int	ft_isalpha(int c)
 	else
 		return (0);
 }
-

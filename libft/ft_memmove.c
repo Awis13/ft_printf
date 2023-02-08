@@ -6,16 +6,11 @@
 /*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:31:42 by Nipostni          #+#    #+#             */
-/*   Updated: 2022/12/20 17:34:34 by nipostni         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:28:03 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-** Copies 'n' bytes from memory area 'src' to memory area 'dst'.
-** The memory areas may overlap.
-*/
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
@@ -31,15 +26,13 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	dstt = (char *) dst;
 	srct = (char *) src;
 	if (dstt > srct)
-	{
 		i = n - 1;
-		while (i >= 0)
-		{
-			dstt[i] = srct[i];
-			i--;
-		}
+	while (i >= 0)
+	{
+		dstt[i] = srct[i];
+		i--;
 	}
-	else
+	if (srct > dstt)
 	{
 		i = -1;
 		while (++i < (int) n)
