@@ -6,17 +6,11 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/02/08 16:15:28 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:29:06 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdarg.h>
-#include <stdio.h>
 #include "../include/ft_printf.h"
-#include <fcntl.h>
-#include <stdbool.h>
-#include <limits.h>
 
 void	ft_put_hex(unsigned long n, int *printed_len, bool is_capital)
 {
