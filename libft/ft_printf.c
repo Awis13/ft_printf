@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
+/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:55:00 by nipostni          #+#    #+#             */
-/*   Updated: 2023/02/07 16:01:48 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:18:14 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,12 @@ void	ft_handle_string(char *temp, int *printed_len)
 
 void ft_handle_ptr(void *ptr, int *printed_len)
 {
+	if (ptr == 0)
+		ft_putstr("(nil)", printed_len);
+	else {
 	ft_putstr("0x", printed_len);
 	ft_put_hex((unsigned long)ptr, printed_len, false);
+	}
 }
 
 
@@ -131,9 +135,9 @@ int ft_printf(const char *format, ...)
 
 // int main(void)
 // {
-//     char *x = " %s ";
+//     char *x = " %p %p ";
 // 	char *y = "hello";
-//     ft_printf(x, y);
+//     ft_printf(x, 0, 0);
 //     printf("\n");
-//     printf(x, y);
+//     printf(x, 0, 0);
 // }
