@@ -2,3 +2,6 @@ pft_2019/
 pft/
 ft_printf_tester/
 printfTester/
+.vscode/
+.DS_Store
+.gitignore

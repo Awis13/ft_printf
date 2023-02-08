@@ -6,7 +6,7 @@
 #    By: nipostni <awis@me.com>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 17:07:54 by nipostni          #+#    #+#              #
-#    Updated: 2023/02/08 23:11:12 by nipostni         ###   ########.fr        #
+#    Updated: 2023/02/08 23:12:59 by nipostni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(OBJS_PRINTF)
 	@printf "\e[32mBuilding library...\n\e[0m"
 	@ar rcs $(NAME) $(OBJS) $(OBJS_PRINTF)
-	@printf "\e[32mDone! Libft is ready.\n\e[0m"
+	@printf "\e[32mDone! Libft with ft_printf is ready.\n\e[0m"
 
 # Create build directory if it does not exist
 $(OBJS): | build
