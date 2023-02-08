@@ -6,11 +6,9 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:59:53 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/27 17:58:46 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:19:50 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
