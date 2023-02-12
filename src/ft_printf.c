@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_put_hex(unsigned long n, int *printed_len, bool is_capital)
 {
@@ -98,9 +98,9 @@ int	ft_printf(const char *format, ...)
 
 // int main(void)
 // {
-//     char *x = " %p %p ";
+//     char *x = " %s %s ";
 // 	char *y = "hello";
-//     ft_printf(x, 0, 0);
+//     ft_printf(x, y, y);
 //     printf("\n");
-//     printf(x, 0, 0);
+//     printf(x, y, y);
 // }
