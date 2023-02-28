@@ -6,7 +6,7 @@
 #    By: nipostni <awis@me.com>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 17:07:54 by nipostni          #+#    #+#              #
-#    Updated: 2023/02/08 23:12:59 by nipostni         ###   ########.fr        #
+#    Updated: 2023/02/28 16:28:56 by nipostni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,21 +15,19 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I include
 
 # List of source files
-SRCS = ft_memset.c ft_bzero.c ft_memcpy.c \
-       ft_memmove.c ft_memchr.c ft_memcmp.c \
-       ft_strlen.c ft_isalpha.c ft_isdigit.c \
-       ft_isalnum.c ft_isascii.c ft_isprint.c \
-       ft_toupper.c ft_tolower.c ft_strchr.c \
-       ft_strrchr.c ft_strncmp.c ft_strlcpy.c \
-       ft_strlcat.c ft_strnstr.c ft_atoi.c \
-       ft_calloc.c ft_strdup.c ft_substr.c \
-       ft_strjoin.c ft_strtrim.c ft_split.c \
-       ft_itoa.c ft_strmapi.c ft_striteri.c \
-       ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-       ft_putnbr_fd.c\
-
-# List of bonus source files
-BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+SRCS =	ft_memset.c ft_bzero.c ft_memcpy.c \
+		ft_memmove.c ft_memchr.c ft_memcmp.c \
+		ft_strlen.c ft_isalpha.c ft_isdigit.c \
+		ft_isalnum.c ft_isascii.c ft_isprint.c \
+		ft_toupper.c ft_tolower.c ft_strchr.c \
+		ft_strrchr.c ft_strncmp.c ft_strlcpy.c \
+		ft_strlcat.c ft_strnstr.c ft_atoi.c \
+		ft_calloc.c ft_strdup.c ft_substr.c \
+		ft_strjoin.c ft_strtrim.c ft_split.c \
+		ft_itoa.c ft_strmapi.c ft_striteri.c \
+		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
+		ft_putnbr_fd.c\
+		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
         ft_lstlast.c ft_lstadd_back.c ft_lstclear.c \
         ft_lstdelone.c ft_lstiter.c ft_lstmap.c
 
@@ -40,12 +38,11 @@ SRCS_PRINTF = ft_printf.c ft_printf_utils.c \
 # Object files
 OBJS = $(SRCS:%.c=build/%.o)
 OBJS_PRINTF = $(SRCS_PRINTF:%.c=build/%.o)
-BONUS_OBJS = $(BONUS:%.c=build/%.o)
 
 # Library name
 NAME = libftprintf.a
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
 
 # Default rule: build library
 all: $(NAME)
@@ -53,7 +50,7 @@ all: $(NAME)
 # Build library
 $(NAME): $(OBJS) $(OBJS_PRINTF)
 	@printf "\e[32mBuilding library...\n\e[0m"
-	@ar rcs $(NAME) $(OBJS) $(OBJS_PRINTF)
+	@ar rcs $(NAME) $(OBJS) $(OBJS_PRINTF) 
 	@printf "\e[32mDone! Libft with ft_printf is ready.\n\e[0m"
 
 # Create build directory if it does not exist
@@ -85,9 +82,3 @@ fclean: clean
 
 # Full clean and rebuild
 re: fclean $(NAME)
-
-# Build library with bonus files
-bonus: $(OBJS) $(BONUS_OBJS) $(OBJS_PRINTF)
-	@printf "\e[32mBuilding library with bonus files...\n\e[0m"
-	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-	@printf "\e[32mDone! libft.a BONUS is ready.\n\e[0m"
