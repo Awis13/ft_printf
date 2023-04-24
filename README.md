@@ -1,8 +1,8 @@
-ft_printf: A custom printf implementation
+# ft_printf: A custom printf implementation
 
-Hello there! Welcome to my GitHub repository for my own implementation of the ft_printf function, which I created as a part of my 42 École study. This custom version of the standard C printf function is designed to be lightweight and efficient while still providing the core functionality you'd expect from the classic printf function. Feel free to explore the code, ask questions, or even contribute if you'd like! 😊
+Hello there! Welcome to my GitHub repository for my own implementation of the `ft_printf` function, which I created as a part of my 42 École study. This custom version of the standard C `printf` function is designed to be lightweight and efficient while still providing the core functionality you'd expect from the classic `printf` function. Feel free to explore the code, ask questions, or even contribute if you'd like! 😊
 
-Functionality
+## Functionality
 
 This implementation of ft_printf supports the following format specifiers:
 
@@ -21,7 +21,7 @@ To use ft_printf in your project, simply include the ft_printf.h header file and
 
 Here's an example of how to use ft_printf in your code:
 
-'''c
+```c
 #include "ft_printf.h"
 
 int main(void)
@@ -34,7 +34,7 @@ int main(void)
     ft_printf("Hexadecimal: %x\n", num);
     ft_printf("Pointer: %p\n", (void *)str);
 }
-'''
+```
 License
 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as you see fit.
